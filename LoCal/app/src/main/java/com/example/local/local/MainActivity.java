@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import java.util.*;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,5 +54,17 @@ public class MainActivity extends AppCompatActivity {
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, EventsList);
         calendarView.setAdapter(adapter);
+
+        final ArrayList<String> DaysOfWeek = new ArrayList<String>();
+        String[] days = new String[]{"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+
+        for(int i = 0; i < days.length; i++){
+            DaysOfWeek.add(days[i]);
+        }
+        ListView dateTable = (ListView) findViewById(R.id.dateTable);
+
+        final StableArrayAdapter adapter1 = new StableArrayAdapter(this,
+                android.R.layout.simple_list_item_1, DaysOfWeek);
+        dateTable.setAdapter(adapter1);
     }
 }
