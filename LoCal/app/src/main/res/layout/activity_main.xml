@@ -35,5 +35,20 @@
         android:id="@+id/addEventButton"
         android:layout_alignRight="@+id/calendarView"
         android:layout_alignEnd="@+id/calendarView"
-        android:layout_alignParentBottom="true" />
+        android:src="@mipmap/plus_icon"
+        android:background="@null"
+        android:layout_alignParentBottom="true"
+        android:onClick="addEvent"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addLocationButton"
+        android:src="@mipmap/add_location"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/addEventButton"
+        android:background="@null"
+        android:layout_toStartOf="@+id/addEventButton"
+        android:onClick="addLocation"/>
+
 </RelativeLayout>
