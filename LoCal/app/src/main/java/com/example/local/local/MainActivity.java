@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import java.util.*;
-import android.widget.ArrayAdapter;
+import android.widget.*;
 import android.widget.TextView;
 import android.content.Intent;
+import android.view.*;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         public StableArrayAdapter(Context context, int textViewResourceId,
                                   List<String> objects) {
             super(context, textViewResourceId, objects);
+
+
             for (int i = 0; i < objects.size(); ++i) {
                 mIdMap.put(objects.get(i), i);
             }
@@ -37,17 +41,46 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            View row = convertView;
+//
+//////            if(row == null)
+//////            {
+//////                LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+//////                row = inflater.inflate(layoutResourceId, parent, false);
+//////
+//////                holder = new WeatherHolder();
+//////                holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
+//////                holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
+//////
+//////                row.setTag(holder);
+//////            }
+//////            else
+//////            {
+//////                holder = (WeatherHolder)row.getTag();
+//////            }
+//////
+//////            Weather weather = data[position];
+//////            holder.txtTitle.setText(weather.title);
+//////            holder.imgIcon.setImageResource(weather.icon);
+//////
+//////            return row;
+////        }
+//        }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView calendarView = (ListView) findViewById(R.id.calendarView);
+        final ListView calendarView = (ListView) findViewById(R.id.calendarView);
+
 
         String[] events = new String[]{"Mobile Applications Development", "Artificial Intelligence",
-        "Psychology", "Lunch", "Dinner"};
+        "Psychology", "Lunch", "Dinner", "TV", "Other stuff", "Homework", "Work on Calendar", "Brush Teeth", "Get Pillow", "Go to sleep"};
 
         final ArrayList<String> EventsList = new ArrayList<String>();
         for(int i = 0; i < events.length; i++){
@@ -64,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < days.length; i++){
             DaysOfWeek.add(days[i]);
         }
-        ListView dateTable = (ListView) findViewById(R.id.dateTable);
 
-        final StableArrayAdapter adapter1 = new StableArrayAdapter(this,
-                android.R.layout.simple_list_item_1, DaysOfWeek);
-        dateTable.setAdapter(adapter1);
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState){
+
     }
 
     public void addEvent(View view){
@@ -77,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addLocation(View view){
-
+        Intent intent = new Intent(this, AddLocationActivity.class);
+        startActivity(intent);
     }
+
 }
